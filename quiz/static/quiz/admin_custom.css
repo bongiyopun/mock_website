@@ -1,0 +1,101 @@
+/* Custom overrides for Jazzmin Admin Panel */
+
+/* BRUTE FORCE VISIBILITY FOR TITLES & BREADCRUMBS */
+/* Target by class, tag, and parent to ensure it wins the specificity war */
+html body .content-header h1,
+html body .content-header h1.m-0,
+html body .content-wrapper h1,
+html body .content-header .breadcrumb-item,
+html body .content-header .breadcrumb-item a,
+html body .content-header .breadcrumb-item.active,
+div.content-header h1,
+.col-sm-6 h1 {
+    color: #000000 !important;
+    font-weight: 800 !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    -webkit-text-fill-color: #000000 !important;
+}
+
+/* Fix breadcrumb container style */
+.breadcrumb {
+    background: #e5e7eb !important;
+    border: 1px solid #d1d5db !important;
+    padding: 8px 15px !important;
+    border-radius: 8px !important;
+}
+
+/* Fix selection status alignment and visibility */
+#changelist-form .actions {
+    display: flex !important;
+    align-items: center !important;
+    gap: 15px !important;
+    margin-bottom: 1.5rem !important;
+    background: #f3f4f6 !important;
+    padding: 10px !important;
+    border-radius: 8px !important;
+    border: 1px solid #d1d5db !important;
+}
+
+#changelist-form .actions span.action-counter,
+#changelist-form .actions span.all,
+#changelist-form .actions label {
+    color: #111827 !important;
+    font-weight: 700 !important;
+    font-size: 0.9rem !important;
+    margin: 0 !important;
+}
+
+/* Fix search bar */
+#changelist-search input[type=text] {
+    background: #ffffff !important;
+    border: 1px solid #9ca3af !important;
+    color: #111827 !important;
+    height: 38px !important;
+    border-radius: 6px !important;
+    padding: 0 12px !important;
+}
+
+/* Fix form content spacing */
+.content-wrapper .content {
+    padding: 24px !important;
+}
+
+@media (min-width: 1200px) {
+    .col-lg-9 {
+        flex: 0 0 100% !important;
+        max-width: 100% !important;
+    }
+}
+
+/* Form submission bar */
+.submit-row {
+    background: #f3f4f6 !important;
+    border: 1px solid #d1d5db !important;
+    padding: 15px !important;
+    border-radius: 8px !important;
+    margin-top: 2rem !important;
+    display: flex !important;
+    justify-content: flex-end !important;
+    gap: 10px !important;
+}
+
+/* Sidebar & Icon Polish */
+.nav-sidebar .nav-link i {
+    color: #4f46e5 !important;
+}
+
+.nav-sidebar .nav-link.active {
+    background: #4f46e5 !important;
+    color: #ffffff !important;
+}
+
+/* Footer & Pagination */
+.paginator {
+    color: #374151 !important;
+    font-weight: 700 !important;
+    background: #f3f4f6 !important;
+    padding: 10px !important;
+    border-radius: 6px !important;
+    margin-top: 1rem !important;
+}

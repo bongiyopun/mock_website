@@ -1,0 +1,35 @@
+# Python bytecode & cache
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+
+# Environments
+.env
+.venv/
+env/
+venv/
+ENV/
+
+# Database
+# db.sqlite3 is ignored to prevent committing local passwords and sessions.
+# Initial quiz data is preserved in quiz_data.json.
+db.sqlite3
+db.sqlite3-journal
+
+# Media / Uploaded files
+media/
+
+# Static collection
+staticfiles/
+
+# IDE & Editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS files
+Thumbs.db
+Desktop.ini
+.DS_Store

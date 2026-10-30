@@ -1,0 +1,102 @@
+{% extends "admin/base_site.html" %}
+{% load i18n %}
+
+{% block title %}Bulk Upload Questions{% endblock %}
+
+{% block breadcrumbs %}
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="{% url 'admin:index' %}">Home</a></li>
+        <li class="breadcrumb-item"><a href="{% url 'admin:app_list' 'quiz' %}">Quiz</a></li>
+        <li class="breadcrumb-item"><a href="{% url 'admin:quiz_quiz_changelist' %}">Quizzes</a></li>
+        <li class="breadcrumb-item active">Bulk Upload</li>
+    </ol>
+</nav>
+{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-8 col-lg-6">
+            <div class="card card-primary">
+                <div class="card-header">
+                    <h3 class="card-title">
+                        <i class="fas fa-file-upload"></i> Upload Questions via CSV
+                    </h3>
+                </div>
+                <div class="card-body">
+                    <div class="alert alert-info">
+                        <h5><i class="fas fa-info-circle"></i> CSV Format</h5>
+                        <p class="mb-1">Your CSV file must have these columns:</p>
+                        <code>question_text, option_a, option_b, option_c, option_d, correct_option, marks</code>
+                        <p class="mt-2 mb-0">
+                            <strong>correct_option</strong>: <code>A</code>, <code>B</code>, <code>C</code>, or <code>D</code><br>
+                            <strong>marks</strong>: optional (defaults to 1)
+                        </p>
+                    </div>
+
+                    <p>
+                        <a href="{% url 'admin:quiz_csv_template' %}" class="btn btn-sm btn-outline-secondary">
+                            <i class="fas fa-download"></i> Download CSV Template
+                        </a>
+                    </p>
+
+                    <form method="post" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <div class="form-group">
+                            <label for="quiz_id"><strong>Select Quiz</strong></label>
+                            <select name="quiz_id" id="quiz_id" class="form-control" required>
+                                <option value="">— Choose a quiz —</option>
+                                {% for quiz in quizzes %}
+                                <option value="{{ quiz.id }}">
+                                    {{ quiz.title }}
+                                    {% if quiz.is_published %}(Published){% else %}(Draft){% endif %}
+                                </option>
+                                {% endfor %}
+                            </select>
+                        </div>
+
+                        <div class="form-group mt-3">
+                            <label for="csv_file"><strong>CSV File</strong></label>
+                            <input type="file" name="csv_file" id="csv_file"
+                                   class="form-control" accept=".csv" required>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary mt-3">
+                            <i class="fas fa-upload"></i> Upload &amp; Create Questions
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4 col-lg-6">
+            <div class="card card-secondary">
+                <div class="card-header">
+                    <h3 class="card-title"><i class="fas fa-table"></i> Example CSV</h3>
+                </div>
+                <div class="card-body p-0">
+                    <table class="table table-sm table-bordered mb-0" style="font-size:0.8rem">
+                        <thead class="thead-light">
+                            <tr>
+                                <th>question_text</th><th>option_a</th><th>option_b</th>
+                                <th>option_c</th><th>option_d</th><th>correct_option</th><th>marks</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Capital of France?</td><td>London</td><td>Paris</td>
+                                <td>Berlin</td><td>Madrid</td><td>B</td><td>1</td>
+                            </tr>
+                            <tr>
+                                <td>2 + 2 = ?</td><td>3</td><td>4</td>
+                                <td>5</td><td>6</td><td>B</td><td>1</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
