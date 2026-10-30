@@ -8,7 +8,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = 'django-insecure-23f(+=rml)0ky*@_!#!_(x^w6&_h5)f2c16e-p3q8%o)rt4*0u'
 DEBUG = True
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['mock-website-dbd4.onrender.com']
 
 INSTALLED_APPS = [
     'jazzmin',
